@@ -2,6 +2,7 @@
   "name": "mbapi",
   "scripts": {
     "dev": "wrangler dev",
+    "test": "vitest",
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
