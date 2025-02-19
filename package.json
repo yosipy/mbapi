@@ -2,13 +2,16 @@
   "name": "mbapi",
   "scripts": {
     "dev": "wrangler dev",
+    "test": "vitest",
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
     "hono": "^4.7.1"
   },
   "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.6.16",
     "@cloudflare/workers-types": "^4.20250109.0",
+    "vitest": "^2.1.9",
     "wrangler": "^3.101.0"
   }
 }
