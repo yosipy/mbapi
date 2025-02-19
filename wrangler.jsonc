@@ -2,7 +2,14 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mbapi",
   "main": "src/index.ts",
-  "compatibility_date": "2025-02-18"
+  "compatibility_date": "2025-02-18",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "test",
+      "database_id": "c668c7fd-8ca9-4030-90a0-9e06b8af7b1b"
+    }
+  ]
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
