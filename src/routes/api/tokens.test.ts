@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import app from "../../index";
+import app from "@/index";
 
 describe("post /api/tokens", () => {
   describe("Without the SECRET_API_KEY env variable", () => {
