@@ -8,15 +8,16 @@
   "dependencies": {
     "@prisma/adapter-d1": "^6.4.0",
     "@prisma/client": "^6.4.0",
+    "dayjs": "^1.11.13",
     "hono": "^4.7.1",
-    "jose": "^5.10.0"
+    "jose": "^6.0.10"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.6.16",
+    "@cloudflare/vitest-pool-workers": "^0.8.8",
     "@cloudflare/workers-types": "^4.20250109.0",
     "@types/node": "^22.13.4",
     "prisma": "^6.4.0",
-    "vitest": "^2.1.9",
+    "vitest": "^3.0.9",
     "wrangler": "^3.101.0"
   }
 }
