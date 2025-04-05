@@ -1,13 +1,10 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from "vitest"
 import dayjs from "dayjs"
-import utc from "dayjs/plugin/utc.js"
 import * as jose from "jose"
 import * as originalModule from "./jwtAuth"
 import { jwtAuth } from "./jwtAuth"
 import * as remotePuclicKeyFetcherModule from "./remotePublicKeyFetcher"
 import { Hono } from "hono"
-
-dayjs.extend(utc)
 
 const testKeyPair = await jose.generateKeyPair("PS256")
 
