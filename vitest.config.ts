@@ -1,5 +1,5 @@
-import * as path from "path";
-import { defineWorkersProject } from "@cloudflare/vitest-pool-workers/config";
+import * as path from "path"
+import { defineWorkersProject } from "@cloudflare/vitest-pool-workers/config"
 
 export default defineWorkersProject(() => {
   return {
@@ -12,5 +12,5 @@ export default defineWorkersProject(() => {
         workers: { wrangler: { configPath: "./wrangler.jsonc" } },
       },
     },
-  };
-});
+  }
+})
