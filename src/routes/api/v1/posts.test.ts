@@ -1,21 +1,21 @@
 import { describe, it, expect } from "vitest"
 import { env } from "cloudflare:test"
-import app from "@/index"
 import { initPrismaD1Client } from "@/helpers/prismaD1Client"
-import { createPostFactory } from "@/test/factories/createPost"
+import { TestingFactory } from "@/test/factories/createPost"
+import app from "@/index"
 
 describe("show", () => {
   describe("When post is exist", () => {
     it("Should return 200 response", async () => {
       const prismaD1Client = initPrismaD1Client(env.DB)
+      const factory = new TestingFactory(prismaD1Client)
 
-      const slug = "xxxx"
-      await createPostFactory(prismaD1Client, {
+      await factory.createPost({
         title: "title",
-        slug,
+        slug: "xxxx",
       })
 
-      const res = await app.request(`/api/v1/posts/${slug}`, {}, env)
+      const res = await app.request(`/api/v1/posts/xxxx`, {}, env)
 
       expect(res.status).toBe(200)
 
