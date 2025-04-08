@@ -24,6 +24,7 @@ jobs:
         if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
         run: |
           npm ci
+      - run: npx prisma generate
       - name: Run test
         run: |
           npm run test
