@@ -27,7 +27,7 @@ describe("customJWTVerify", () => {
     },
   }
 
-  const generateJWT = async ({
+  const generateTestingJWT = async ({
     secret = testKeyPair.privateKey,
     alg = "PS256",
     kid = "kid_key",
@@ -63,7 +63,7 @@ describe("customJWTVerify", () => {
   describe("Test for IssuedAt & ExpirationTime", () => {
     describe("When system time is before issuedAt", () => {
       it("Raise error", async () => {
-        const token = await generateJWT({})
+        const token = await generateTestingJWT({})
 
         vi.setSystemTime(dayjs(time).subtract(1, "second").toDate())
 
@@ -78,7 +78,7 @@ describe("customJWTVerify", () => {
 
     describe("When system time is issuedAt", () => {
       it("Raise error", async () => {
-        const token = await generateJWT({})
+        const token = await generateTestingJWT({})
 
         vi.setSystemTime(dayjs(time).toDate())
 
@@ -93,7 +93,7 @@ describe("customJWTVerify", () => {
 
     describe("When system time is 2hours after issuedAt", () => {
       it("Return payload and protectedHeader", async () => {
-        const token = await generateJWT({})
+        const token = await generateTestingJWT({})
 
         vi.setSystemTime(
           dayjs(time).add(2, "hours").subtract(1, "second").toDate()
@@ -110,7 +110,7 @@ describe("customJWTVerify", () => {
 
     describe("When system time is after '2hours after issuedAt'", () => {
       it("Raise error", async () => {
-        const token = await generateJWT({})
+        const token = await generateTestingJWT({})
 
         vi.setSystemTime(dayjs(time).add(2, "hours").toDate())
 
@@ -127,7 +127,7 @@ describe("customJWTVerify", () => {
   describe("Test for auth_time", () => {
     describe("When arg.minAuthTime <= token's auth_time", () => {
       it("Raise error", async () => {
-        const token = await generateJWT({})
+        const token = await generateTestingJWT({})
 
         expect(
           await originalModule.customJWTVerify(token, testKeyPair.publicKey, {
@@ -140,7 +140,7 @@ describe("customJWTVerify", () => {
 
     describe("When arg.minAuthTime > token's auth_time", () => {
       it("Raise error", async () => {
-        const token = await generateJWT({})
+        const token = await generateTestingJWT({})
 
         await expect(() =>
           originalModule.customJWTVerify(token, testKeyPair.publicKey, {
@@ -155,7 +155,7 @@ describe("customJWTVerify", () => {
   describe("When algorism is not PS256", () => {
     it("Raise error", async () => {
       const testKeyPairRS256 = await jose.generateKeyPair("RS256")
-      const token = await generateJWT({
+      const token = await generateTestingJWT({
         secret: testKeyPairRS256.privateKey,
         alg: "RS256",
       })
@@ -174,7 +174,7 @@ describe("customJWTVerify", () => {
   describe("When token signed by another private key", () => {
     it("Raise error", async () => {
       const anotherTestKeyPair = await jose.generateKeyPair("PS256")
-      const token = await generateJWT({
+      const token = await generateTestingJWT({
         secret: anotherTestKeyPair.privateKey,
       })
 
@@ -189,7 +189,7 @@ describe("customJWTVerify", () => {
 
   describe("When token's iss is not 'https://cms.mirohani.com'", () => {
     it("Raise error", async () => {
-      const token = await generateJWT({
+      const token = await generateTestingJWT({
         iss: "https://dummy-cms.mirohani.com",
       })
 
@@ -204,7 +204,7 @@ describe("customJWTVerify", () => {
 
   describe("When token's aud is not arg's audience", () => {
     it("Raise error", async () => {
-      const token = await generateJWT({
+      const token = await generateTestingJWT({
         aud: "dummy-server-domain.example.com",
       })
 
@@ -357,7 +357,7 @@ describe("jwtAuth", () => {
   })
 
   describe("JWT's test", () => {
-    const generateJWT = async ({
+    const generateTestingJWT = async ({
       secret = testKeyPair.privateKey,
       alg = "PS256",
       kid = "kid_key",
@@ -390,7 +390,7 @@ describe("jwtAuth", () => {
         .mockImplementation(
           async () => await jose.exportSPKI(testKeyPair.publicKey)
         )
-      const token = await generateJWT({})
+      const token = await generateTestingJWT({})
       vi.setSystemTime(
         dayjs(time).add(2, "hours").subtract(1, "second").toDate()
       )
