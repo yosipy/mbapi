@@ -17,7 +17,7 @@ export default defineWorkersProject(async () => {
       setupFiles: ["./src/test/apply-migrations.ts"],
       poolOptions: {
         workers: {
-          wrangler: { configPath: "./wrangler.jsonc" },
+          wrangler: { configPath: "./wrangler.jsonc", environment: "test" },
           miniflare: {
             bindings: { TEST_MIGRATIONS: migrations },
           },
