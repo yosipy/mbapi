@@ -15,7 +15,7 @@ describe("show", () => {
         slug: "xxxx",
       })
 
-      const res = await app.request(`/api/v1/posts/xxxx`, {}, env)
+      const res = await app.request(`/api/internal/posts/xxxx`, {}, env)
 
       expect(res.status).toBe(200)
 
@@ -27,7 +27,7 @@ describe("show", () => {
 
   describe("When post is not exist", () => {
     it("Should return 404 response", async () => {
-      const res = await app.request(`/api/v1/posts/xxxx`, {}, env)
+      const res = await app.request(`/api/internal/posts/xxxx`, {}, env)
 
       expect(res.status).toBe(404)
     })

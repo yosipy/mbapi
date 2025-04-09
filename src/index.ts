@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import routesAPIV1Posts from "./routes/api/v1/posts"
+import routesAPIInternalPosts from "./routes/api/internal/posts"
 
 const app = new Hono()
 
@@ -7,6 +7,6 @@ app.get("/", (c) => {
   return c.text("Hello Hono!")
 })
 
-app.route("/api/v1/posts", routesAPIV1Posts)
+app.route("/api/internal/posts", routesAPIInternalPosts)
 
 export default app
