@@ -47,7 +47,7 @@ const generateLoginedJWT = async (
     .setIssuedAt()
     .setIssuer("https://cms.mirohani.com")
     .setSubject(params.mirohaniUserId)
-    .setAudience("server-domain.example.com")
+    .setAudience("localhost:8787")
     .setExpirationTime("2h")
     .sign(secret)
 }
