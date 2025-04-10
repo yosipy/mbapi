@@ -5,7 +5,7 @@ import { TestingFactory } from "@/test/factories/createPost"
 import app from "@/index"
 import { loginInternalAPIAroundEach } from "@/test/helpers/loginInternalAPIHelpers"
 
-describe("show", () => {
+describe("GET /api/internal/posts/:slug", () => {
   describe("When not logined", () => {
     it("Should return 401 response", async () => {
       const res = await app.request(`/api/internal/posts/xxxx`, {}, env)
@@ -63,7 +63,7 @@ describe("show", () => {
   })
 })
 
-describe("create", () => {
+describe("POST /api/internal/posts", () => {
   const params = {
     title: "test title",
     description: "test description",
